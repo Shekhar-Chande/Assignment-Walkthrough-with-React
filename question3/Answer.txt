@@ -1,0 +1,60 @@
+Que:- Explain the difference between npm and npx using the create-react-app code example.
+
+Ans:- npm (node package manager) is the dependency/package manager you get out of the box when you install Node.js. It provides a way for developers to install packages both globally and locally.
+
+Sometimes you might want to take a look at a specific package and try out some commands. But you cannot do that without installing the dependencies in your local node_modules folder.
+
+npm the package manager
+
+npm is a couple of things. First and foremost, it is an online repository for the publishing of open-source Node.js projects.
+
+Second, it is a CLI tool that aids you install those packages and manage their versions and dependencies. There are hundreds of thousands of Node.js libraries and applications on npm and many more are added every day.
+
+npm by itself doesn’t run any packages. If you want to run a package using npm, you must specify that package in your package.json file.
+
+When executables are installed via npm packages, npm creates links to them:
+
+local installs have links created at the ./node_modules/.bin/ directory
+global installs have links created from the global bin/ directory (for example: /usr/local/bin on Linux or at %AppData%/npm on Windows)
+To execute a package with npm you either have to type the local path, like this:
+
+$ ./node_modules/.bin/your-package
+or you can run a locally installed package by adding it into your package.json file in the scripts section, like this:
+
+{
+  "name": "your-application",
+  "version": "1.0.0",
+  "scripts": {
+    "your-package": "your-package"
+  }
+}
+Then you can run the script using npm run:
+
+npm run your-package
+You can see that running a package with plain npm requires quite a bit of ceremony.
+
+
+
+
+
+
+
+npx the package runner
+
+npx is also a CLI tool whose purpose is to make it easy to install and manage dependencies hosted in the npm registry.
+
+It’s now very easy to run any sort of Node.js based executable that you would normally install via npm.
+
+You can run the following command to see if it is already installed for your current npm version:
+
+$ which npx
+If it's not, you can install it like this:
+
+$ npm install -g npx
+Once you make sure you have it installed, let’s see a few of the use cases that make npx extremely helpful.
+
+Run a locally installed package easily
+If you wish to execute a locally installed package, all you need to do is type:
+
+$ npx your-package
+npx will check whether <command> or <package> exists in $PATH, or in the local project binaries, and if so it will execute it.
